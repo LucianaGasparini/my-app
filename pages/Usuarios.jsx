@@ -1,9 +1,8 @@
 import axios from "axios";
 import {
-    Box, HStack, Pressable, Spacer, VStack
+    Box, HStack, Pressable, Spacer, VStack, Text
 } from 'native-base';
 import React, { useEffect, useState } from "react";
-import { Text } from "react-native";
 import { SwipeListView } from 'react-native-swipe-list-view';
 
 const Usuarios = ()=>{

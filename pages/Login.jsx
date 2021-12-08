@@ -1,22 +1,14 @@
-import React, { useState, useContext } from "react";
-import Title from "../components/Title";
-import { Container } from "../components/Container";
-import "react-native-gesture-handler";
 import axios from 'axios';
-
-import { 
-  Text, 
-  Button, 
-  Input,
-  Alert,
-  IconButton,
-  HStack,
-  VStack,
-  CloseIcon,
-  Collapse,
-  Link
+import {
+  Alert, Button, CloseIcon,
+  Collapse, HStack, IconButton, Input, Text, VStack
 } from "native-base";
+import React, { useContext, useState } from "react";
+import "react-native-gesture-handler";
+import { Container } from "../components/Container";
+import Title from "../components/Title";
 import { UsuarioContext } from "../context";
+
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState();
@@ -37,10 +29,11 @@ const Login = ({navigation}) => {
   };
   
   return (
-    <Container>
+    <Container  >
+      
       <Title> Serratec App</Title>
       <Text style={{ color: "chocolate" }}>
-        Até aqui, tudo indo, continua tudo ok! ops
+        React Native - Desenvolvimento de Aplicativo Mobile
       </Text>
       <Collapse isOpen = {mostrarMensagemErro}> 
           <Alert w="100%" status={"error"}mt="5">

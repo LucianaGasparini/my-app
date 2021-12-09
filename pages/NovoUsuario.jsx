@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
+
 import { UsuarioContext } from "../context";
 import axios from 'axios';
 import {
+  AlertDialog,
   Box,
   Heading,
   VStack,
@@ -18,12 +20,14 @@ import {
   Text
 } from "native-base"
 
-export const Cadastro = () => {
+export const NovoUsuario = ({navigation}) => {
     const [nome, setNome] = useState();
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
     const [confSenha, setConfSenha] = useState();
      const [mensagemDeErro, setMensagemDeErro]  = useState(false)
+     const [isOpenCadastro, setIsOpenCadastro] = useState(false);
+     const cancelRef = React.useRef(null)
      
     const efetuarCadastro = () =>{   
       if (senha === confSenha){
@@ -33,6 +37,7 @@ export const Cadastro = () => {
         senha,      
       }).then ((response) => {
         if (response.status === 201){
+          setIsOpenCadastro(true);
           limparCampos();
         }
       })
@@ -54,7 +59,22 @@ setMensagemDeErro(true)
        }
      
   return (
+    <NativeBaseProvider>
+       <Center flex={1} px="3">
     <Box safeArea p="2" w="90%" maxW="290" py="8">
+    <AlertDialog
+        leastDestructiveRef={cancelRef}
+        isOpen={isOpenCadastro}
+        onClose={() => setIsOpenCadastro(false)}
+      >
+        <AlertDialog.Content>
+          <AlertDialog.CloseButton />
+          <AlertDialog.Header>Cadastro Efetuado</AlertDialog.Header>
+          <AlertDialog.Body>
+            Cadastro efetuado com sucesso
+          </AlertDialog.Body>
+        </AlertDialog.Content>
+      </AlertDialog>
       <Heading
         size="lg"
         color="coolGray.800"
@@ -127,22 +147,37 @@ setMensagemDeErro(true)
                   variant="unstyled"
                   icon={<CloseIcon size="3" color="coolGray.600" />}
                   onPress={()=>{setMensagemDeErro(false)}}
+                  
                 />
-              </HStack>
+              </HStack>            
+         
             </VStack>
           </Alert>
           </Collapse>               
       </VStack>
+      <Text
+      mt = "5"
+            fontSize="sm"
+            color="coolGray.600"
+            _dark={{
+              color: "warmGray.200",
+            }}
+          >
+            Retorne a tela para login {" "}
+          </Text>
+          
+          <Button
+          mt = "5"
+        size="lg"
+        //variant="outline"
+        onPress={()=>navigation.navigate("Login")}
+      >
+        Clicando aqui
+      </Button>  
     </Box>
-  )
-}
-
-export default () => {
-  return (
-    <NativeBaseProvider>
-      <Center flex={1} px="3">
-        <Cadastro />
-      </Center>
+    </Center>
     </NativeBaseProvider>
   )
 }
+
+export default NovoUsuario;

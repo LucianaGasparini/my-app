@@ -17,7 +17,7 @@ axios.get('https://secret-headland-69654.herokuapp.com/usuario')
 
           const renderItem = ({ item}) => (
             <Box>
-              <Pressable onPress={() => console.log('You touched me')} bg="gray">
+              <Pressable onPress={() => console.log('You touched me')} bg="#BFF586">
                 <Box
                   pl="4"
                   pr="5"

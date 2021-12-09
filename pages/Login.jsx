@@ -22,16 +22,21 @@ const Login = ({navigation}) => {
       senha
     }). then(result =>{
       setUsuario(result.data);
+      limparCamposLogin();
     })
     .catch((erro)=>{
       setMostrarMensagemErro(true);
+      
     });
   };
-  
+  const limparCamposLogin =()=> {
+    setEmail('');
+    setSenha('');
+         
+  }
   return (
-    <Container  >
-      
-      <Title> Serratec App</Title>
+    <Container>
+      <Title>Serratec App</Title>
       <Text style={{ color: "chocolate" }}>
         React Native - Desenvolvimento de Aplicativo Mobile
       </Text>
@@ -93,7 +98,7 @@ const Login = ({navigation}) => {
               color: "warmGray.200",
             }}
           >
-            Quer ser um novo Usuário?{" "}
+            Seja um novo usuário{" "}
           </Text>
           
           <Button
